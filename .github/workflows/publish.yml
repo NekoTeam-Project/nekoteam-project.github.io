@@ -43,6 +43,8 @@ jobs:
           git clone "https://github.com/${{ github.repository }}" deploy_git
           mv ./deploy_git/.git ./public/
           cd ./public
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
           git push --force "https://${{ secrets.GITHUB_TOKEN }}@${{ github.repository }}" gh-pages:gh-pages
