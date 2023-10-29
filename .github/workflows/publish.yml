@@ -47,4 +47,4 @@ jobs:
           git config --global user.name "GitHub Actions"
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
-          git push --force "https://${{ secrets.GITHUB_TOKEN }}@${{ github.repository }}" gh-pages:gh-pages
+          git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" gh-pages:gh-pages
