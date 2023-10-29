@@ -40,7 +40,7 @@ jobs:
 
       - name: Deploy blog
         run: |
-          git clone "https://${{ github.repository }}" deploy_git
+          git clone "https://github.com/${{ github.repository }}" deploy_git
           mv ./deploy_git/.git ./public/
           cd ./public
           git add .
