@@ -40,7 +40,7 @@ jobs:
 
       - name: Deploy blog
         run: |
-          git clone "https://github.com/${{ github.repository }}" deploy_git
+          git clone "git@github.com/${{ github.repository }}" deploy_git
           cd deploy_git
           git checkout gh-pages
           cd ..
