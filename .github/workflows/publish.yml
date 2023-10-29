@@ -30,20 +30,33 @@ jobs:
       - name: Build
         run: npm run build
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
+          name: pages
           path: ./public
           
   deploy:
     needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Checkout Branch
+        run: |
+          git checkout gh-pages
+      - name: Donwload Pages Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: pages
+          path: release
+      - name: Setting Git for release
+        run: |
+          mv .git ./release/.git
+      - name: Deploy Hexo
+        run: |
+          cd ./release
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -m "CI: Auto update at $(date +"%m-%d %H:%M")"
+          git push
