@@ -40,9 +40,9 @@ jobs:
 
       - name: Deploy blog
         run: |
-          git clone "https://${{ secrets.GH_REF }}" deploy_git
+          git clone "https://${{ secrets.GITHUB_REF }}" deploy_git
           mv ./deploy_git/.git ./public/
           cd ./public
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
-          git push --force "https://${{ secrets.GH_TOKEN }}@${{ secrets.GH_REF }}" gh-pages:gh-pages
+          git push --force "https://${{ secrets.GITHUB_TOKEN }}@${{ secrets.GITHUB_REF }}" gh-pages:gh-pages
