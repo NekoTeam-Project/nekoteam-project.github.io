@@ -18,9 +18,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup node
-        uses: actions/setup-node@v1.1.0
+        uses: actions/setup-node@v3
         with:
-          node-version: "12.x"
+          node-version: "latest"
 
       - name: Cache Node Dependencies
         id: cache
