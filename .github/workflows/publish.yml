@@ -41,7 +41,9 @@ jobs:
       - name: Deploy blog
         run: |
           git clone "https://github.com/${{ github.repository }}" deploy_git
+          cd deploy_git
           git checkout gh-pages
+          cd ..
           mv ./deploy_git/.git ./public/
           cd ./public
           git config --global user.email "actions@github.com"
