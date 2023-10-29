@@ -34,20 +34,6 @@ jobs:
           npm install hexo-cli -g
           npm install          
 
-      - name: Generate files
+      - name: Deploy Hexo
         run: |
-          hexo clean && hexo generate
-
-      - name: Deploy blog
-        run: |
-          git clone "git@github.com/${{ github.repository }}" deploy_git
-          cd deploy_git
-          git checkout gh-pages
-          cd ..
-          mv ./deploy_git/.git ./public/
-          cd ./public
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add .
-          git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
-          git push --force origin gh-pages
+          hexo deploy
