@@ -22,13 +22,6 @@ jobs:
         with:
           node-version: "latest"
 
-      - name: Cache Node Dependencies
-        id: cache
-        uses: actions/cache@v1
-        with:
-          path: .npm
-          key: ${{runner.OS}}-npm-caches-${{ hashFiles('package-lock.json') }}
-
       - name: Install dependencies
         run: |
           npm install hexo-cli -g
@@ -36,4 +29,6 @@ jobs:
 
       - name: Deploy Hexo
         run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
           hexo deploy
