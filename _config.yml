@@ -104,4 +104,4 @@ theme: butterfly
 deploy:
   type: 'git'
   repo: https://github.com/NekoTeam-Project/nekoteam-project.github.io
-  branch: [gh-pages]
+  branch: gh-pages
